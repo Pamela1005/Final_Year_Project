@@ -61,14 +61,6 @@ GitHub
 
 ⚙️ Installation
 
-Clone the repository
-
-git clone https://github.com/yourusername/ai-career-counseling-system.git
-
-Navigate to the project folder
-
-cd ai-career-counseling-system
-
 Install required dependencies
 
 pip install -r requirements.txt
