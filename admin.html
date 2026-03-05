@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href='style.css'>
+</head>
+<body>
+
+<div class="admin-container">
+
+    <h1> Admin Dashboard</h1>
+
+    <div class="admin-cards">
+
+        <div class="admin-card">
+            <h2>Total Users</h2>
+            <p>{{ users }}</p>
+        </div>
+
+        <div class="admin-card">
+            <h2>Total Predictions</h2>
+            <p>{{ predictions }}</p>
+        </div>
+
+    </div>
+
+    <a href="/dashboard" class="btn">Back</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+flask
+flask-login
+flask-sqlalchemy
+scikit-learn
+pandas
+numpy
+matplotlib
+spacy
+PyPDF2
+gunicorn

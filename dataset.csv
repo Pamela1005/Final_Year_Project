@@ -1,0 +1,601 @@
+math_score,programming_skill,communication_skill,interest_tech,interest_management,personality_score,career
+78,3,3,4,7,5,General Graduate Career
+91,5,1,7,6,5,Data Scientist
+68,6,8,3,8,3,Business Analyst
+54,9,3,6,3,7,General Graduate Career
+82,5,2,9,5,6,General Graduate Career
+47,1,1,1,4,4,General Graduate Career
+60,4,3,5,4,2,General Graduate Career
+78,5,2,4,4,9,General Graduate Career
+97,5,2,8,8,1,Data Scientist
+58,7,6,1,6,4,General Graduate Career
+62,4,1,9,3,1,General Graduate Career
+50,1,2,6,5,6,General Graduate Career
+50,5,6,4,6,4,General Graduate Career
+63,7,3,9,5,5,General Graduate Career
+92,6,4,5,6,5,Data Scientist
+75,5,1,5,8,9,General Graduate Career
+79,4,8,5,7,1,General Graduate Career
+63,2,7,1,5,2,General Graduate Career
+42,4,7,1,6,6,General Graduate Career
+61,3,3,8,4,5,General Graduate Career
+92,1,3,8,9,7,Data Scientist
+41,8,2,6,4,3,General Graduate Career
+63,5,1,4,1,3,General Graduate Career
+83,4,7,2,7,2,General Graduate Career
+69,8,7,2,7,3,General Graduate Career
+77,7,2,9,4,1,General Graduate Career
+41,2,7,5,3,5,General Graduate Career
+99,1,8,4,8,5,Business Analyst
+60,4,1,1,5,7,General Graduate Career
+72,8,9,7,7,4,General Graduate Career
+51,2,7,3,4,3,General Graduate Career
+97,3,3,6,4,1,Data Scientist
+61,1,8,5,8,8,Business Analyst
+83,1,7,5,8,3,General Graduate Career
+64,3,8,5,2,2,General Graduate Career
+88,5,6,1,2,4,Data Scientist
+66,3,9,1,3,3,General Graduate Career
+98,1,5,3,3,1,Data Scientist
+81,1,3,4,1,3,General Graduate Career
+67,8,3,5,3,2,General Graduate Career
+99,2,1,2,6,8,Data Scientist
+55,3,8,8,8,6,Business Analyst
+54,2,2,2,6,9,General Graduate Career
+86,3,3,9,5,8,Data Scientist
+90,7,8,2,4,3,Data Scientist
+83,1,8,9,3,5,General Graduate Career
+94,8,4,7,4,7,Data Scientist
+91,2,4,8,7,5,Data Scientist
+96,3,5,2,1,8,Data Scientist
+42,9,6,7,7,5,General Graduate Career
+76,7,5,6,1,1,General Graduate Career
+90,4,7,4,2,5,Data Scientist
+46,5,2,7,4,4,General Graduate Career
+60,2,7,4,1,6,General Graduate Career
+48,8,7,2,9,3,General Graduate Career
+78,4,1,7,6,5,General Graduate Career
+57,9,7,8,1,2,Software Engineer
+43,5,5,2,1,6,General Graduate Career
+64,9,3,5,6,6,General Graduate Career
+99,4,3,1,4,5,Data Scientist
+53,5,4,7,4,6,General Graduate Career
+89,9,2,8,6,7,Software Engineer
+97,8,2,6,7,5,Data Scientist
+48,3,1,5,9,1,General Graduate Career
+65,1,5,6,5,8,General Graduate Career
+92,3,4,2,9,4,Data Scientist
+41,4,2,1,4,9,General Graduate Career
+59,2,3,7,2,6,General Graduate Career
+67,1,7,7,3,1,General Graduate Career
+86,7,7,2,1,3,Data Scientist
+99,8,4,2,6,3,Data Scientist
+46,7,5,1,6,4,General Graduate Career
+83,5,5,8,1,6,General Graduate Career
+47,1,6,8,3,7,General Graduate Career
+86,7,9,1,5,4,Data Scientist
+74,7,2,8,3,6,General Graduate Career
+53,9,5,9,3,1,Software Engineer
+56,3,3,4,3,8,General Graduate Career
+75,9,4,1,5,7,General Graduate Career
+89,1,6,1,5,9,Data Scientist
+79,1,8,3,4,3,General Graduate Career
+43,4,1,5,1,2,General Graduate Career
+41,9,8,5,5,1,General Graduate Career
+45,6,7,9,5,3,General Graduate Career
+93,3,1,2,4,5,Data Scientist
+81,1,2,2,6,2,General Graduate Career
+43,4,3,6,4,3,General Graduate Career
+93,9,1,9,7,4,Software Engineer
+68,3,9,1,7,7,General Graduate Career
+57,9,8,9,2,3,Software Engineer
+65,7,2,9,3,9,General Graduate Career
+83,4,9,9,1,8,General Graduate Career
+73,3,7,5,8,4,General Graduate Career
+49,5,9,9,9,1,Business Analyst
+75,5,6,4,4,1,General Graduate Career
+53,3,6,2,6,1,General Graduate Career
+70,9,4,6,9,1,General Graduate Career
+87,4,2,4,6,8,Data Scientist
+54,5,7,6,9,3,General Graduate Career
+47,4,5,3,4,6,General Graduate Career
+53,5,6,6,8,3,General Graduate Career
+62,7,2,2,9,5,General Graduate Career
+99,9,5,2,4,7,Data Scientist
+96,7,4,9,5,2,Data Scientist
+79,5,9,7,8,6,Business Analyst
+60,7,6,3,6,6,General Graduate Career
+55,5,2,1,7,3,General Graduate Career
+84,3,1,8,3,6,General Graduate Career
+57,7,5,6,7,5,General Graduate Career
+86,2,9,7,8,2,Business Analyst
+92,9,6,9,6,9,Software Engineer
+63,1,7,5,9,8,General Graduate Career
+65,6,5,1,6,3,General Graduate Career
+64,7,6,7,9,8,General Graduate Career
+99,8,5,5,4,9,Data Scientist
+99,9,9,3,8,3,Business Analyst
+99,2,6,9,4,3,Data Scientist
+84,2,8,1,2,2,General Graduate Career
+80,5,2,1,9,8,General Graduate Career
+68,5,9,1,5,1,General Graduate Career
+54,6,5,3,4,8,General Graduate Career
+84,3,7,6,2,7,General Graduate Career
+40,8,1,3,1,7,General Graduate Career
+64,1,5,8,7,3,General Graduate Career
+46,6,2,2,6,1,General Graduate Career
+48,4,6,9,2,4,General Graduate Career
+63,1,1,3,8,9,General Graduate Career
+40,7,3,5,4,5,General Graduate Career
+83,9,5,8,8,1,Software Engineer
+47,4,4,2,7,5,General Graduate Career
+63,4,3,6,5,8,General Graduate Career
+50,6,5,5,8,8,General Graduate Career
+90,3,8,9,9,5,Business Analyst
+56,6,4,5,5,9,General Graduate Career
+47,7,1,2,5,1,General Graduate Career
+74,3,7,5,2,4,General Graduate Career
+74,7,8,4,5,3,General Graduate Career
+72,3,3,7,3,2,General Graduate Career
+98,2,6,6,7,8,Data Scientist
+44,4,2,2,5,7,General Graduate Career
+81,8,7,5,8,9,General Graduate Career
+78,9,8,7,1,2,General Graduate Career
+97,7,6,7,3,4,Data Scientist
+80,1,6,5,3,6,General Graduate Career
+67,3,5,9,9,3,General Graduate Career
+46,9,8,4,5,8,General Graduate Career
+48,1,1,3,9,3,General Graduate Career
+47,9,4,4,9,2,General Graduate Career
+51,8,4,5,1,3,General Graduate Career
+73,1,3,6,2,6,General Graduate Career
+72,6,3,3,5,2,General Graduate Career
+87,5,4,2,4,8,Data Scientist
+94,6,1,4,9,1,Data Scientist
+62,5,2,5,7,7,General Graduate Career
+63,6,9,4,6,2,General Graduate Career
+76,5,2,3,7,6,General Graduate Career
+74,5,5,8,1,2,General Graduate Career
+83,4,9,4,1,2,General Graduate Career
+79,3,9,2,8,8,Business Analyst
+61,3,8,2,2,2,General Graduate Career
+66,4,1,1,9,7,General Graduate Career
+74,9,1,4,7,3,General Graduate Career
+40,2,9,9,6,8,General Graduate Career
+74,9,8,7,1,7,General Graduate Career
+76,1,9,7,1,8,General Graduate Career
+86,1,7,7,2,7,Data Scientist
+53,5,3,8,6,6,General Graduate Career
+42,6,3,1,6,7,General Graduate Career
+40,6,2,8,2,5,General Graduate Career
+44,3,5,4,1,7,General Graduate Career
+65,7,3,4,5,1,General Graduate Career
+94,9,6,4,5,1,Data Scientist
+53,8,2,6,2,9,General Graduate Career
+78,6,3,7,6,5,General Graduate Career
+66,8,5,6,9,5,General Graduate Career
+48,5,1,1,2,3,General Graduate Career
+54,8,1,8,2,5,Software Engineer
+54,4,9,7,3,3,General Graduate Career
+65,8,7,6,7,9,General Graduate Career
+81,2,1,6,6,9,General Graduate Career
+99,5,8,5,8,6,Business Analyst
+52,9,3,6,8,1,General Graduate Career
+90,4,8,9,6,7,Data Scientist
+71,6,5,9,3,7,General Graduate Career
+78,1,1,8,3,4,General Graduate Career
+88,9,7,9,1,8,Software Engineer
+91,1,5,8,7,6,Data Scientist
+71,5,6,8,5,4,General Graduate Career
+43,4,6,1,4,4,General Graduate Career
+69,3,8,5,4,2,General Graduate Career
+76,6,9,4,4,2,General Graduate Career
+62,2,2,2,6,4,General Graduate Career
+78,3,9,8,8,5,Business Analyst
+84,5,9,3,8,8,Business Analyst
+54,9,7,4,5,6,General Graduate Career
+82,2,1,7,6,4,General Graduate Career
+68,8,7,9,4,7,Software Engineer
+75,2,5,2,9,8,General Graduate Career
+52,5,6,3,8,2,General Graduate Career
+71,7,7,4,1,7,General Graduate Career
+46,8,5,1,2,2,General Graduate Career
+98,1,7,7,9,2,Data Scientist
+90,6,9,2,8,8,Business Analyst
+61,1,3,5,3,2,General Graduate Career
+67,2,8,1,8,9,Business Analyst
+41,1,2,3,1,1,General Graduate Career
+81,5,7,2,4,9,General Graduate Career
+84,9,2,1,3,1,General Graduate Career
+96,6,4,7,6,2,Data Scientist
+92,1,7,5,7,6,Data Scientist
+45,1,3,1,4,6,General Graduate Career
+67,2,2,6,7,1,General Graduate Career
+67,9,7,5,9,7,General Graduate Career
+83,3,1,3,2,8,General Graduate Career
+83,1,8,7,3,2,General Graduate Career
+59,5,3,9,5,8,General Graduate Career
+69,7,2,9,3,9,General Graduate Career
+50,6,3,9,8,6,General Graduate Career
+97,1,5,2,8,5,Data Scientist
+94,5,8,3,8,9,Business Analyst
+67,5,7,7,9,9,General Graduate Career
+64,6,7,5,4,1,General Graduate Career
+78,3,7,2,5,3,General Graduate Career
+72,5,8,3,5,9,General Graduate Career
+40,7,1,6,8,2,General Graduate Career
+96,5,4,7,7,4,Data Scientist
+66,5,6,9,9,4,General Graduate Career
+96,5,9,1,8,2,Business Analyst
+91,3,2,7,2,3,Data Scientist
+52,1,1,8,4,3,General Graduate Career
+80,5,2,3,6,1,General Graduate Career
+42,9,7,4,2,6,General Graduate Career
+78,1,3,6,7,8,General Graduate Career
+45,3,2,7,3,3,General Graduate Career
+47,4,7,4,3,5,General Graduate Career
+66,1,2,8,2,1,General Graduate Career
+48,1,3,5,8,7,General Graduate Career
+76,8,7,1,6,1,General Graduate Career
+72,2,4,4,1,9,General Graduate Career
+90,8,1,3,1,8,Data Scientist
+81,7,5,9,7,7,General Graduate Career
+83,2,9,8,8,7,Business Analyst
+63,6,8,1,5,5,General Graduate Career
+54,6,9,6,5,5,General Graduate Career
+98,3,9,9,4,5,Data Scientist
+93,2,7,7,6,1,Data Scientist
+71,1,4,4,6,8,General Graduate Career
+71,6,5,1,3,1,General Graduate Career
+63,5,1,2,9,4,General Graduate Career
+80,9,1,5,7,9,General Graduate Career
+91,1,3,5,1,9,Data Scientist
+88,7,8,8,7,5,Data Scientist
+88,5,2,6,5,4,Data Scientist
+97,5,4,8,5,3,Data Scientist
+91,2,2,2,2,3,Data Scientist
+51,3,5,3,4,5,General Graduate Career
+78,7,9,6,6,1,General Graduate Career
+41,6,1,3,7,5,General Graduate Career
+42,2,5,6,5,6,General Graduate Career
+88,6,9,6,9,7,Business Analyst
+76,2,1,2,3,9,General Graduate Career
+88,2,9,7,1,3,Data Scientist
+95,2,8,2,4,2,Data Scientist
+56,3,4,6,9,3,General Graduate Career
+98,2,5,1,4,9,Data Scientist
+88,4,5,3,2,7,Data Scientist
+41,9,6,2,5,9,General Graduate Career
+41,6,7,7,3,2,General Graduate Career
+67,1,8,4,9,5,Business Analyst
+93,8,8,8,4,4,Software Engineer
+62,7,2,6,6,2,General Graduate Career
+76,3,9,4,2,9,General Graduate Career
+71,1,7,5,6,9,General Graduate Career
+72,5,4,9,3,6,General Graduate Career
+40,4,4,7,9,6,General Graduate Career
+58,8,8,9,2,8,Software Engineer
+41,1,4,7,9,6,General Graduate Career
+92,1,6,1,5,1,Data Scientist
+83,4,5,8,8,4,General Graduate Career
+65,8,3,4,2,7,General Graduate Career
+71,5,2,3,6,2,General Graduate Career
+45,2,9,7,3,9,General Graduate Career
+71,6,9,3,5,8,General Graduate Career
+94,5,1,8,8,8,Data Scientist
+43,2,3,6,1,7,General Graduate Career
+94,3,8,5,5,4,Data Scientist
+50,9,6,4,3,2,General Graduate Career
+95,7,5,8,4,3,Data Scientist
+98,7,5,8,2,6,Data Scientist
+56,6,6,1,9,5,General Graduate Career
+77,8,7,9,3,8,Software Engineer
+63,4,1,5,2,6,General Graduate Career
+44,8,9,4,9,6,Business Analyst
+91,4,3,6,7,1,Data Scientist
+73,8,4,6,6,4,General Graduate Career
+45,9,1,2,1,5,General Graduate Career
+61,3,3,8,5,3,General Graduate Career
+50,3,2,7,3,9,General Graduate Career
+87,2,2,1,1,1,Data Scientist
+55,3,1,5,4,6,General Graduate Career
+72,3,8,6,2,6,General Graduate Career
+48,5,3,4,2,5,General Graduate Career
+99,5,3,2,3,5,Data Scientist
+98,2,6,4,8,5,Data Scientist
+45,6,8,1,8,6,Business Analyst
+55,5,9,7,7,8,General Graduate Career
+68,6,9,2,6,2,General Graduate Career
+42,1,4,2,9,6,General Graduate Career
+59,5,5,9,4,1,General Graduate Career
+99,9,2,5,1,4,Data Scientist
+98,2,9,2,8,3,Business Analyst
+75,1,8,9,7,9,General Graduate Career
+58,9,3,9,7,3,Software Engineer
+65,9,9,1,3,6,General Graduate Career
+42,9,3,3,4,1,General Graduate Career
+58,6,9,4,9,6,Business Analyst
+59,8,2,7,6,4,General Graduate Career
+71,1,9,4,5,8,General Graduate Career
+46,4,8,2,3,9,General Graduate Career
+91,1,9,7,9,4,Business Analyst
+80,8,5,6,5,6,General Graduate Career
+72,1,2,3,5,1,General Graduate Career
+79,3,8,6,4,4,General Graduate Career
+78,4,6,6,4,7,General Graduate Career
+57,8,8,5,1,1,General Graduate Career
+79,6,5,4,7,8,General Graduate Career
+40,7,2,1,9,6,General Graduate Career
+50,8,6,6,3,5,General Graduate Career
+67,2,5,2,2,9,General Graduate Career
+96,8,5,3,3,2,Data Scientist
+64,3,1,8,1,5,General Graduate Career
+89,7,2,6,6,6,Data Scientist
+62,3,8,3,7,7,General Graduate Career
+70,7,3,7,2,5,General Graduate Career
+69,2,3,4,8,9,General Graduate Career
+81,6,8,9,6,1,General Graduate Career
+74,3,8,5,4,7,General Graduate Career
+46,3,2,3,5,7,General Graduate Career
+99,9,8,2,8,4,Business Analyst
+55,7,1,2,3,9,General Graduate Career
+65,5,6,3,3,5,General Graduate Career
+87,7,8,2,4,4,Data Scientist
+96,9,3,4,1,7,Data Scientist
+91,1,8,2,9,4,Business Analyst
+99,7,1,9,8,3,Data Scientist
+88,6,9,2,8,9,Business Analyst
+41,9,9,9,6,8,Software Engineer
+40,1,5,6,7,1,General Graduate Career
+87,4,4,1,6,7,Data Scientist
+51,9,6,4,9,9,General Graduate Career
+44,4,7,1,3,8,General Graduate Career
+76,3,5,6,3,8,General Graduate Career
+71,9,9,4,3,6,General Graduate Career
+98,2,3,3,3,4,Data Scientist
+94,4,7,3,9,8,Data Scientist
+48,6,5,9,4,3,General Graduate Career
+80,2,7,6,7,9,General Graduate Career
+74,8,2,9,9,2,Software Engineer
+58,8,4,5,7,2,General Graduate Career
+87,1,2,2,9,7,Data Scientist
+55,3,7,8,3,4,General Graduate Career
+42,9,2,5,4,8,General Graduate Career
+59,5,1,2,8,9,General Graduate Career
+63,6,9,4,6,7,General Graduate Career
+93,4,1,9,5,5,Data Scientist
+95,2,8,4,4,8,Data Scientist
+72,8,2,4,8,4,General Graduate Career
+63,6,8,2,1,2,General Graduate Career
+91,5,3,6,9,6,Data Scientist
+50,9,6,2,1,9,General Graduate Career
+88,1,3,7,8,1,Data Scientist
+47,5,7,3,4,7,General Graduate Career
+75,6,9,3,9,9,Business Analyst
+77,5,2,5,5,9,General Graduate Career
+79,6,5,3,3,3,General Graduate Career
+59,6,6,2,9,5,General Graduate Career
+74,7,4,9,9,8,General Graduate Career
+87,4,4,2,4,8,Data Scientist
+64,8,4,2,4,4,General Graduate Career
+74,7,2,8,8,1,General Graduate Career
+64,9,4,9,2,1,Software Engineer
+68,7,1,7,9,4,General Graduate Career
+57,3,6,3,6,6,General Graduate Career
+85,3,1,9,9,8,General Graduate Career
+57,8,6,3,8,6,General Graduate Career
+41,5,1,5,7,9,General Graduate Career
+93,4,6,9,1,9,Data Scientist
+74,8,8,3,3,2,General Graduate Career
+55,6,2,7,2,1,General Graduate Career
+80,2,2,1,5,2,General Graduate Career
+75,4,4,4,5,5,General Graduate Career
+72,4,3,4,5,4,General Graduate Career
+43,6,4,7,4,4,General Graduate Career
+72,6,7,8,5,9,General Graduate Career
+53,1,1,1,3,8,General Graduate Career
+60,8,6,5,1,6,General Graduate Career
+87,6,3,7,5,1,Data Scientist
+59,3,7,4,9,2,General Graduate Career
+95,9,2,4,9,6,Data Scientist
+47,2,2,4,4,2,General Graduate Career
+46,8,4,6,3,5,General Graduate Career
+42,3,1,7,1,5,General Graduate Career
+56,5,3,2,2,6,General Graduate Career
+72,6,9,5,8,6,Business Analyst
+87,6,7,4,1,6,Data Scientist
+51,4,7,3,8,2,General Graduate Career
+98,3,4,7,7,3,Data Scientist
+90,4,2,6,8,6,Data Scientist
+61,1,4,7,6,8,General Graduate Career
+94,4,6,5,9,1,Data Scientist
+61,1,3,6,3,1,General Graduate Career
+85,1,1,5,4,2,General Graduate Career
+69,6,8,7,6,6,General Graduate Career
+77,5,5,2,8,9,General Graduate Career
+77,4,5,5,5,4,General Graduate Career
+84,3,4,6,3,3,General Graduate Career
+90,1,6,6,6,8,Data Scientist
+93,6,3,5,4,9,Data Scientist
+47,2,9,7,9,5,Business Analyst
+66,8,5,8,3,9,Software Engineer
+66,5,3,7,4,2,General Graduate Career
+73,7,1,5,7,3,General Graduate Career
+60,2,6,1,7,7,General Graduate Career
+69,8,2,5,4,7,General Graduate Career
+72,2,3,2,6,6,General Graduate Career
+67,4,1,5,3,6,General Graduate Career
+86,1,9,5,6,2,Data Scientist
+72,5,8,2,2,6,General Graduate Career
+44,9,2,5,8,4,General Graduate Career
+99,1,8,4,2,3,Data Scientist
+87,9,9,1,7,2,Data Scientist
+58,8,1,3,9,1,General Graduate Career
+43,6,5,1,1,5,General Graduate Career
+74,7,8,5,8,2,Business Analyst
+88,3,2,4,7,2,Data Scientist
+56,1,4,7,6,7,General Graduate Career
+83,5,7,5,6,8,General Graduate Career
+67,2,3,4,6,8,General Graduate Career
+69,5,5,2,9,4,General Graduate Career
+68,8,8,4,2,1,General Graduate Career
+85,9,3,2,1,7,General Graduate Career
+92,2,4,8,6,1,Data Scientist
+45,3,9,3,8,4,Business Analyst
+74,3,7,9,3,8,General Graduate Career
+99,1,1,4,1,2,Data Scientist
+80,8,4,6,9,6,General Graduate Career
+76,6,4,5,1,6,General Graduate Career
+63,8,9,1,3,9,General Graduate Career
+68,9,6,9,8,5,Software Engineer
+88,5,9,1,3,4,Data Scientist
+85,3,6,8,4,5,General Graduate Career
+92,5,6,9,8,5,Data Scientist
+70,5,5,9,1,8,General Graduate Career
+74,5,5,1,6,8,General Graduate Career
+99,3,2,2,1,2,Data Scientist
+72,4,8,1,1,7,General Graduate Career
+91,9,8,2,8,8,Business Analyst
+60,9,1,8,4,6,Software Engineer
+71,2,8,5,1,5,General Graduate Career
+62,8,5,7,7,9,General Graduate Career
+72,8,2,2,5,3,General Graduate Career
+42,7,2,8,5,4,General Graduate Career
+57,8,6,6,1,9,General Graduate Career
+64,3,9,8,6,6,General Graduate Career
+81,6,1,1,9,8,General Graduate Career
+70,1,6,1,9,7,General Graduate Career
+93,7,9,7,8,2,Business Analyst
+97,1,8,8,5,3,Data Scientist
+42,9,6,3,1,1,General Graduate Career
+79,1,3,5,9,9,General Graduate Career
+85,1,8,1,1,7,General Graduate Career
+63,7,9,7,8,1,Business Analyst
+89,2,1,5,5,3,Data Scientist
+71,5,9,8,3,4,General Graduate Career
+86,8,6,8,7,4,Software Engineer
+61,8,6,9,7,5,Software Engineer
+62,3,4,7,9,3,General Graduate Career
+41,7,1,1,7,3,General Graduate Career
+66,3,8,3,3,1,General Graduate Career
+81,6,2,8,1,7,General Graduate Career
+41,6,1,3,8,1,General Graduate Career
+65,3,2,8,3,2,General Graduate Career
+56,7,1,1,8,4,General Graduate Career
+79,3,1,5,8,4,General Graduate Career
+72,8,9,4,5,5,General Graduate Career
+48,4,1,5,1,2,General Graduate Career
+82,1,4,8,7,4,General Graduate Career
+93,4,6,4,5,1,Data Scientist
+87,7,7,4,8,2,Data Scientist
+78,4,2,3,9,1,General Graduate Career
+68,6,6,7,7,4,General Graduate Career
+81,9,7,3,7,4,General Graduate Career
+94,1,2,3,1,7,Data Scientist
+65,5,2,5,4,9,General Graduate Career
+74,7,7,5,2,9,General Graduate Career
+89,1,1,6,2,5,Data Scientist
+64,4,8,8,2,1,General Graduate Career
+63,6,3,6,4,1,General Graduate Career
+52,2,6,1,1,6,General Graduate Career
+99,5,9,8,4,2,Data Scientist
+97,1,6,8,2,8,Data Scientist
+46,6,9,9,5,9,General Graduate Career
+96,6,7,9,3,4,Data Scientist
+75,4,9,2,8,5,Business Analyst
+84,8,2,2,4,8,General Graduate Career
+59,4,8,3,1,3,General Graduate Career
+40,8,8,1,1,5,General Graduate Career
+47,8,2,4,3,3,General Graduate Career
+85,5,4,4,9,3,General Graduate Career
+55,4,7,9,7,3,General Graduate Career
+53,2,4,9,2,7,General Graduate Career
+51,3,4,9,9,7,General Graduate Career
+90,3,6,7,2,7,Data Scientist
+62,4,6,2,3,8,General Graduate Career
+54,4,3,5,2,5,General Graduate Career
+67,5,9,4,3,5,General Graduate Career
+73,4,2,8,6,4,General Graduate Career
+41,8,6,2,9,7,General Graduate Career
+71,6,7,6,9,4,General Graduate Career
+62,6,9,5,7,2,General Graduate Career
+61,8,3,2,3,4,General Graduate Career
+90,7,3,1,4,8,Data Scientist
+64,8,7,8,6,9,Software Engineer
+97,2,4,2,5,3,Data Scientist
+61,9,8,7,2,7,General Graduate Career
+97,1,7,9,6,9,Data Scientist
+97,8,5,9,3,4,Software Engineer
+61,4,7,8,8,3,General Graduate Career
+88,4,3,9,2,5,Data Scientist
+91,5,2,2,1,1,Data Scientist
+81,8,6,6,9,3,General Graduate Career
+45,5,2,4,3,8,General Graduate Career
+54,8,3,4,1,8,General Graduate Career
+93,1,6,5,7,4,Data Scientist
+82,9,5,3,5,2,General Graduate Career
+99,6,8,1,5,8,Data Scientist
+76,3,9,8,1,8,General Graduate Career
+72,8,3,5,9,4,General Graduate Career
+47,9,3,3,7,3,General Graduate Career
+92,6,3,7,8,2,Data Scientist
+99,7,6,7,9,9,Data Scientist
+83,1,1,1,6,1,General Graduate Career
+83,5,7,9,5,7,General Graduate Career
+44,5,1,2,6,5,General Graduate Career
+78,4,5,5,2,8,General Graduate Career
+43,6,8,5,4,4,General Graduate Career
+45,7,4,8,3,7,General Graduate Career
+84,9,5,8,7,5,Software Engineer
+71,1,4,7,9,5,General Graduate Career
+91,6,4,7,5,9,Data Scientist
+69,7,8,6,6,9,General Graduate Career
+86,3,2,6,2,9,Data Scientist
+74,8,1,9,3,6,Software Engineer
+94,5,3,6,3,6,Data Scientist
+79,9,9,2,9,5,Business Analyst
+91,5,4,2,7,9,Data Scientist
+55,9,5,5,8,8,General Graduate Career
+52,4,2,4,9,7,General Graduate Career
+89,9,4,2,6,7,Data Scientist
+99,5,2,3,4,6,Data Scientist
+81,9,2,7,1,5,General Graduate Career
+69,3,4,8,8,4,General Graduate Career
+58,4,6,6,7,3,General Graduate Career
+56,9,7,5,2,3,General Graduate Career
+95,6,3,1,8,6,Data Scientist
+58,2,3,8,5,4,General Graduate Career
+67,7,6,3,7,6,General Graduate Career
+97,2,3,6,4,3,Data Scientist
+94,2,2,3,5,4,Data Scientist
+65,1,8,7,8,9,Business Analyst
+76,3,5,7,1,5,General Graduate Career
+65,6,1,9,1,7,General Graduate Career
+92,8,3,5,4,2,Data Scientist
+62,9,8,8,3,5,Software Engineer
+48,7,4,8,2,9,General Graduate Career
+51,4,7,1,3,3,General Graduate Career
+92,6,2,5,1,9,Data Scientist
+40,5,7,3,1,6,General Graduate Career
+97,8,5,1,6,4,Data Scientist
+97,1,5,4,5,7,Data Scientist
+40,1,6,8,8,8,General Graduate Career
+86,6,9,3,2,6,Data Scientist
+73,2,6,2,4,5,General Graduate Career
+71,5,8,9,8,6,Business Analyst
+93,1,7,5,6,5,Data Scientist
+87,7,9,7,1,8,Data Scientist
+64,1,4,2,4,1,General Graduate Career
+79,4,2,9,1,7,General Graduate Career
+84,9,7,9,2,2,Software Engineer
+92,1,6,4,5,9,Data Scientist
+40,4,1,4,8,1,General Graduate Career
+55,6,9,6,8,6,Business Analyst
+78,6,9,6,3,9,General Graduate Career
+44,8,2,1,4,1,General Graduate Career
+61,1,3,9,6,4,General Graduate Career
+68,7,5,2,3,4,General Graduate Career
+94,1,5,5,2,9,Data Scientist
+42,7,1,9,6,5,General Graduate Career
+51,3,8,4,5,5,General Graduate Career
+65,8,8,3,5,6,General Graduate Career

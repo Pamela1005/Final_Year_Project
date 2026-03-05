@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Career Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(120deg,#1e3c72,#2a5298);
+    color:white;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    position:fixed;
+    background:#0f2027;
+    padding-top:30px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:15px;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#2c5364;
+}
+
+/* Main */
+
+.main{
+    margin-left:220px;
+    padding:30px;
+}
+
+/* Cards */
+
+.card{
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Upload button */
+
+input[type="file"]{
+    margin-top:10px;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#1e90ff;
+    border:none;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0b65d4;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>AI Portal</h2>
+
+<a href="#">Dashboard</a>
+<a href="#">Career Prediction</a>
+<a href="#">Resume Analysis</a>
+<a href="#">Profile</a>
+<a href="#">Logout</a>
+
+</div>
+
+
+<div class="main">
+
+<h1>Student Dashboard</h1>
+
+<!-- Resume Upload -->
+
+<div class="card">
+
+<h2>Upload Resume</h2>
+
+<form id="resumeForm">
+
+<label for="resumeUpload">Upload your Resume (PDF or DOCX)</label><br>
+
+<input 
+type="file" 
+id="resumeUpload" 
+name="resume" 
+accept=".pdf,.doc,.docx"
+title="Upload your resume file"
+required
+>
+
+<br>
+
+<button type="submit">Analyze Resume</button>
+
+</form>
+
+<p id="result"></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+document.getElementById("resumeForm").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+let file = document.getElementById("resumeUpload").files[0]
+
+if(file){
+
+document.getElementById("result").innerHTML =
+"✅ Resume uploaded successfully! AI analysis starting..."
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
