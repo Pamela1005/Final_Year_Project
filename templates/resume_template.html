@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ full_name }} - Resume</title>
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+  .resume-container {
+    width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #2a5298;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #1e3c72;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #555;
+  }
+  .header p a {
+    color: #2a5298;
+    text-decoration: none;
+  }
+  
+  .section {
+    margin-bottom: 25px;
+  }
+  .section h2 {
+    font-size: 18px;
+    color: #1e3c72;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .item {
+    margin-bottom: 15px;
+  }
+  .item-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .item-subtitle {
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .item-desc {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .skills-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+
+  .print-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .print-btn:hover {
+    background: #2a5298;
+  }
+
+  @media print {
+    body {background: white;}
+    .resume-container {box-shadow: none; margin: 0; padding: 0; width: 100%;}
+    .print-btn {display: none;}
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
+
+<div class="resume-container">
+  <div class="header">
+    <h1>{{ full_name }}</h1>
+    <p>
+      {{ email }} | {{ phone }} 
+      {% if links %}| <a href="https://{{ links }}" target="_blank">{{ links }}</a>{% endif %}
+    </p>
+  </div>
+
+  {% if summary %}
+  <div class="section">
+    <h2>Professional Summary</h2>
+    <div class="item-desc">{{ summary }}</div>
+  </div>
+  {% endif %}
+
+  <div class="section">
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-title">{{ edu_degree }}</div>
+      <div class="item-subtitle">
+        <span>{{ edu_institute }}</span>
+        <span>{{ edu_year }}</span>
+      </div>
+    </div>
+  </div>
+
+  {% if skills %}
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="item-desc">{{ skills }}</div>
+  </div>
+  {% endif %}
+
+  {% if education_level == 'highschool' %}
+    
+    {% if hs_activities %}
+    <div class="section">
+      <h2>Extracurriculars & Achievements</h2>
+      <div class="item-desc">{{ hs_activities }}</div>
+    </div>
+    {% endif %}
+
+    {% if hs_hobbies %}
+    <div class="section">
+      <h2>Hobbies & Interests</h2>
+      <div class="item-desc">{{ hs_hobbies }}</div>
+    </div>
+    {% endif %}
+
+  {% else %}
+    
+    {% if exp_title or exp_company %}
+    <div class="section">
+      <h2>Experience</h2>
+      <div class="item">
+        <div class="item-title">{{ exp_title }}</div>
+        <div class="item-subtitle">
+          <span>{{ exp_company }}</span>
+          <span>{{ exp_duration }}</span>
+        </div>
+        <div class="item-desc">{{ exp_desc }}</div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if projects %}
+    <div class="section">
+      <h2>Projects</h2>
+      <div class="item-desc">{{ projects }}</div>
+    </div>
+    {% endif %}
+
+  {% endif %}
+
+</div>
+
+{% if analysis and analysis.prediction %}
+<div class="resume-container" style="margin-top: 20px; background: #e8f4f8; border-top: 4px solid #1e3c72; padding: 30px;">
+  <h2 style="color: #1e3c72; text-align: center; font-size: 24px; margin-bottom: 20px; text-transform: uppercase;">AI Career Analysis</h2>
+  
+  <h3 style="color: #333;">✅ Recommended Career Track: <span style="color: #1e90ff;">{{ analysis.prediction }}</span></h3>
+  
+  {% if analysis.expert_in %}
+  <p style="font-size: 1.1em; padding: 10px; background: #e8f5e9; border-left: 5px solid #4caf50; border-radius: 5px; color: #2e7d32; margin: 15px 0;">
+    <strong>🌟 Primary Expertise Identified:</strong> {{ analysis.expert_in | join(', ') }}
+  </p>
+  {% endif %}
+  
+  {% if analysis.courses %}
+    <h4 style="color: #1e3c72; margin-top: 20px;">Recommended Courses & Learning</h4>
+    <ul style="color: #555;">
+      {% for c in analysis.courses %}
+      <li>{{ c }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  
+  {% if analysis.job_links %}
+    <h4 style="color: #1e3c72; margin-top: 20px;">Relevant Roles & Job Portals</h4>
+    <ul style="color: #555;">
+      {% for p,u in analysis.job_links.items() %}
+      <li><a href="{{ u }}" target="_blank" style="color: #1e90ff; font-weight: bold; text-decoration: none;">{{ p }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+{% endif %}
+
+</body>
+</html>

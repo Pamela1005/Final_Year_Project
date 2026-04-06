@@ -1,0 +1,12 @@
+flask
+scikit-learn
+pandas
+numpy
+matplotlib
+spacy
+PyPDF2
+gunicorn
+pdfminer.six
+python-docx
+supabase
+python-dotenv

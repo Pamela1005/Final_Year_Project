@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Career Dashboard</title>
+<style>
+body {margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(120deg,#1e3c72,#2a5298);color:white;}
+.sidebar {width:220px;height:100vh;position:fixed;background:#0f2027;padding-top:30px;}
+.sidebar h2 {text-align:center;margin-bottom:40px;}
+.sidebar a {display:block;color:white;padding:15px;text-decoration:none;}
+.sidebar a:hover {background:#2c5364;}
+.main {margin-left:220px;padding:30px;}
+.card {background:white;color:black;padding:20px;border-radius:10px;margin-bottom:25px;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+input[type=file] {margin-top:10px;}
+button {margin-top:15px;padding:10px 20px;background:#1e90ff;border:none;color:white;border-radius:5px;cursor:pointer;}
+button:hover {background:#0b65d4;}
+#result {display:none;margin-top:20px;color:black;}
+#result.show {display:block;}
+.chart-container {position:relative;width:100%;height:300px;margin:20px 0;}
+.message.error {color:red;}
+.message.success {color:green;}
+@media(max-width:768px){.sidebar{width:100%;height:auto;position:relative;}.main{margin-left:0;padding:15px;}.card{padding:15px;}.chart-container{height:250px;}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <h2>AI Portal</h2>
+  <a href="/dashboard">Dashboard</a>
+  <a href="/create_resume">Create Resume</a>
+  <a href="/logout">Logout</a>
+</div>
+<div class="main">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h1 style="margin: 0;">Student Dashboard</h1>
+    {% if user_email %}
+    <div style="background: white; padding: 10px 20px; border-radius: 50px; font-weight: bold; color: #1e3c72; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      👤 {{ username }}
+    </div>
+    {% endif %}
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="message {{ 'error' if category == 'error' else 'success' }}">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="card">
+    <h2>Upload Resume</h2>
+   <form action="{{ url_for('upload_resume') }}" method="post" enctype="multipart/form-data">
+  <label for="resume">Select Resume</label>
+  <input id="resume" type="file" name="resume" accept=".pdf,.docx,.txt" required>
+  <button type="submit">Analyze Resume</button>
+</form>
+
+    {% if error or prediction %}
+    <div id="result" class="show">
+      {% if error %}
+        <p style="color:red;">{{ error }}</p>
+      {% endif %}
+      {% if prediction %}
+        <h3>✅ Recommended Career: {{ prediction }}</h3>
+        
+        {% if expert_in %}
+        <p style="font-size: 1.1em; padding: 10px; background: #e8f5e9; border-left: 5px solid #4caf50; border-radius: 5px; color: #2e7d32; margin: 10px 0;">
+          <strong>🌟 Primary Expertise Identified:</strong> {{ expert_in | join(', ') }}
+        </p>
+        {% endif %}
+
+        {% if charts %}
+          <h4>Skill Chart</h4>
+          <div class="chart-container">
+            <canvas id="skillsChart"></canvas>
+          </div>
+        {% endif %}
+        {% if courses %}
+          <h4>Recommended Courses</h4>
+          <ul>
+            {% for c in courses %}
+            <li>{{ c }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if job_links %}
+          <h4>Relevant Roles / Job Profiles (Skills Matched)</h4>
+          <ul>
+            {% for p,u in job_links.items() %}
+            <li><a href="{{ u }}" target="_blank">{{ p }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% if charts %}
+<script>
+const chartData = {{ charts|tojson }};
+const labels = Object.keys(chartData);
+const values = Object.values(chartData);
+const ctx = document.getElementById("skillsChart").getContext("2d");
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets:[{
+      label:"Skill Counts",
+      data: values,
+      backgroundColor: "rgba(30,144,255,0.7)",
+      borderColor: "rgba(30,144,255,1)",
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true }}
+  }
+});
+</script>
+{% endif %}
+</body>
+</html>

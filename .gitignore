@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+.venv-1/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+
+# Flask instance folder
+instance/
+
+# Uploads
+uploads/
+
+# IDE files
+.vscode/
+
+# Project files
+tracker.json

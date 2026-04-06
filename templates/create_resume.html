@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Quick Resume</title>
+<style>
+  body {margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(120deg,#1e3c72,#2a5298);color:white;}
+  .sidebar {width:220px;height:100vh;position:fixed;background:#0f2027;padding-top:30px;}
+  .sidebar h2 {text-align:center;margin-bottom:40px;}
+  .sidebar a {display:block;color:white;padding:15px;text-decoration:none;}
+  .sidebar a:hover {background:#2c5364;}
+  .main {margin-left:220px;padding:30px;}
+  .card {background:white;color:black;padding:30px;border-radius:10px;margin-bottom:25px;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+  
+  h1 {color: white;}
+  h3 {border-bottom: 2px solid #1e3c72; padding-bottom: 5px; margin-top: 30px;}
+  
+  .form-group {margin-bottom: 15px;}
+  label {display: block; margin-bottom: 5px; font-weight: bold; color: #333;}
+  input[type=text], input[type=email], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  textarea {resize: vertical; height: 80px;}
+  
+  .dynamic-section {display: none; background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 15px;}
+  .dynamic-section.active {display: block;}
+  
+  .row {display: flex; gap: 15px;}
+  .col {flex: 1;}
+
+  button {padding:12px 25px; background:#1e90ff; border:none; color:white; border-radius:5px; cursor:pointer; font-size: 16px; font-weight: bold; margin-top: 20px;}
+  button:hover {background:#0b65d4;}
+
+  @media(max-width:768px){
+    .sidebar{width:100%;height:auto;position:relative;}
+    .main{margin-left:0;padding:15px;}
+    .row {flex-direction: column;}
+  }
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <h2>AI Portal</h2>
+  <a href="/dashboard">Dashboard</a>
+  <a href="/create_resume">Create Resume</a>
+  <a href="/logout">Logout</a>
+</div>
+<div class="main">
+  <h1>Quick Resume Builder</h1>
+  <div class="card">
+    <p>Fill out only the fields relevant to you. We'll automatically format them into a beautiful ATS-friendly resume!</p>
+    <form action="/generate_resume" method="POST" target="_blank">
+      
+      <h3>1. Personal Details</h3>
+      <div class="row">
+        <div class="col form-group">
+          <label>Full Name</label>
+          <input type="text" name="full_name" required placeholder="John Doe">
+        </div>
+        <div class="col form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" required placeholder="john@example.com">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label>Phone Number</label>
+          <input type="text" name="phone" placeholder="+1 234 567 8900">
+        </div>
+        <div class="col form-group">
+          <label>LinkedIn / Portfolio URL</label>
+          <input type="text" name="links" placeholder="linkedin.com/in/johndoe">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 20px;">
+        <label>Career Objective / Summary</label>
+        <textarea name="summary" placeholder="A brief statement about your goals..."></textarea>
+      </div>
+
+      <h3>2. Education Level</h3>
+      <div class="form-group">
+        <label>Select your current education level to adapt the form:</label>
+        <select id="education_level" name="education_level" onchange="updateForm()">
+          <option value="highschool">10th / 11th / 12th Class</option>
+          <option value="degree">Undergraduate / Degree Level</option>
+          <option value="masters">Postgraduate / Masters Level</option>
+        </select>
+      </div>
+
+      <!-- Core Education Fields -->
+      <div class="form-group">
+        <label>Recent Education / School / University</label>
+        <div class="row">
+          <div class="col">
+            <input type="text" name="edu_institute" placeholder="Institution Name" required>
+          </div>
+          <div class="col">
+            <input type="text" name="edu_degree" placeholder="Class / Degree (e.g. 12th Board, B.Tech)" required>
+          </div>
+          <div class="col">
+            <input type="text" name="edu_year" placeholder="Year (e.g. 2024)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills (Applicable to all) -->
+      <h3>3. Skills & Technologies</h3>
+      <div class="form-group">
+        <label>Key Skills (Comma Separated)</label>
+        <input type="text" name="skills" placeholder="e.g. Communication, Python, Microsoft Office, Leadership">
+      </div>
+
+      <!-- Dynamic High School Section -->
+      <div id="hs-section" class="dynamic-section active">
+        <h3>4. Extracurriculars & Achievements</h3>
+        <p style="font-size: 0.9em; color: #555;">Since you don't have work experience, showcase your club activities, sports, or school projects!</p>
+        <div class="form-group">
+          <label>Activities & Awards</label>
+          <textarea name="hs_activities" placeholder="e.g. Captain of the football team, Science Fair winner..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Hobbies & Interests</label>
+          <input type="text" name="hs_hobbies" placeholder="e.g. Coding, Reading, Photography">
+        </div>
+      </div>
+
+      <!-- Dynamic Degree/Masters Section -->
+      <div id="degree-section" class="dynamic-section">
+        <h3>4. Professional Experience & Internships</h3>
+        <div class="row">
+          <div class="col form-group">
+            <label>Job Title / Role</label>
+            <input type="text" name="exp_title" placeholder="e.g. Software Engineering Intern">
+          </div>
+          <div class="col form-group">
+            <label>Company / Organization</label>
+            <input type="text" name="exp_company" placeholder="Company Name">
+          </div>
+          <div class="col form-group">
+            <label>Duration</label>
+            <input type="text" name="exp_duration" placeholder="e.g. Jun 2023 - Aug 2023">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description of Responsibilities</label>
+          <textarea name="exp_desc" placeholder="Describe what you built or accomplished..."></textarea>
+        </div>
+        
+        <h3>5. Key Projects / Publications</h3>
+        <div class="form-group">
+          <label>Project Name & Details</label>
+          <textarea name="projects" placeholder="e.g. AI Career Predictor: Built a web app using Flask and sklearn..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit">Generate My Resume</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function updateForm() {
+    var level = document.getElementById("education_level").value;
+    var hsSection = document.getElementById("hs-section");
+    var degreeSection = document.getElementById("degree-section");
+
+    if (level === "highschool") {
+      hsSection.classList.add("active");
+      degreeSection.classList.remove("active");
+    } else {
+      hsSection.classList.remove("active");
+      degreeSection.classList.add("active");
+    }
+  }
+  // Initialize
+  updateForm();
+</script>
+</body>
+</html>
