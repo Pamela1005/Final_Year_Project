@@ -1,0 +1,15 @@
+app.py
+requirements.txt
+render.yaml
+templates/
+instance/
+venv/
+.venv/
+.venv-1/
+tracker.json
+uploads/
+__pycache__/
+.vscode/
+.git/
+.gitignore
+README.md
