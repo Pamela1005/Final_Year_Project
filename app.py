@@ -18,6 +18,8 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "replace-this-with-a-strong-k
 app.config["UPLOAD_FOLDER"] = "uploads"
 
 def log_activity(user_email, action, details=""):
+    print(f"LOG: {user_email} - {action} - {details}") # Direct server logging for Render
+
     log_file = "tracker.json"
     logs = []
     if os.path.exists(log_file):
@@ -249,29 +251,46 @@ def nlp_tokenize_and_extract_skills(text):
     return dict(sorted(skills.items(), key=lambda x: x[1], reverse=True)[:10])
 
 # --- Global Machine Learning Model Prep ---
-# We train the model ONCE at startup to ensure near-instant responses during usage.
+# We train a lightweight model at startup to ensure the server remains within memory limits.
+vectorizer = TfidfVectorizer(max_features=500, stop_words="english")
+global_model = None
 
-print("Training Machine Learning Model for Career Prediction...")
-texts, labels = [], []
-for skill, career in SKILL_CAREER_MAP.items():
-    texts.append(f"I have experience in {skill}.")
-    labels.append(career)
-    texts.append(f"My skills include {skill}.")
-    labels.append(career)
+def train_initial_model():
+    global global_model
+    try:
+        print("Starting Lightweight Model Training...")
+        texts, labels = [], []
+        for skill, career in SKILL_CAREER_MAP.items():
+            texts.append(f"Experience in {skill}")
+            labels.append(career)
+        
+        X = vectorizer.fit_transform(texts)
+        y = np.array(labels)
+        
+        # Use a simpler, faster model (MultinomialNB) which is very lightweight for text
+        from sklearn.naive_bayes import MultinomialNB
+        global_model = MultinomialNB()
+        global_model.fit(X, y)
+        print("Successfully trained lightweight career model.")
+    except Exception as e:
+        print(f"Startup training warning: {e}. Falling back to keyword search.")
 
-vectorizer = TfidfVectorizer(max_features=1000, stop_words="english")
-X = vectorizer.fit_transform(texts)
-y = np.array(labels)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-global_model = RandomForestClassifier(n_estimators=100, random_state=42)
-global_model.fit(X_train, y_train)
-print("Model Training Complete.")
+train_initial_model()
 
 def ml_predict_career(text):
-    """Predict career based on pre-trained global ML model"""
-    prediction = global_model.predict(vectorizer.transform([text]))[0]
-    return prediction
+    """Predict career using pre-trained model or keyword fallback"""
+    if global_model:
+        try:
+            prediction = global_model.predict(vectorizer.transform([text]))[0]
+            return prediction
+        except:
+            pass
+    
+    # Fallback to simple keyword match if ML fails
+    for skill, career in SKILL_CAREER_MAP.items():
+        if skill in text:
+            return career
+    return "General Explorer"
 
 def suggest_courses(career):
     return COURSE_MAP.get(career, ["Explore online courses on Udemy, Coursera, or LinkedIn Learning"])
