@@ -4,5 +4,6 @@ const CONFIG = {
     // Use localhost during development, update to Render URL when live
     API_BASE_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
         ? "http://localhost:5000" 
-        : "https://final-year-project-kb04.onrender.com" 
+        : "https://final-year-project-career-counseling.onrender.com" 
 };
+

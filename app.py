@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 load_dotenv()
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
-CORS(app, resources={r"/api/*": {"origins": "*"}}) # Explicitly enable CORS for API routes
+CORS(app) # Enable CORS for all routes (important for pre-flight and multi-method support)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "replace-this-with-a-strong-key")
 app.config["UPLOAD_FOLDER"] = "uploads"
 
@@ -312,6 +312,14 @@ def job_recommendations(career, skills):
 @app.route("/")
 def index():
      return render_template("index.html")
+
+@app.route("/api/health")
+def health_check():
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "supabase_connected": supabase is not None
+    })
 
 @app.route("/dashboard")
 def dashboard():
