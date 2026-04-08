@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Career Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="config.js"></script>
+<style>
+body {margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(120deg,#1e3c72,#2a5298);color:white; min-height: 100vh;}
+.sidebar {width:220px;height:100vh;position:fixed;background:#0f2027;padding-top:30px; z-index: 10;}
+.sidebar h2 {text-align:center;margin-bottom:40px;}
+.sidebar a {display:block;color:white;padding:15px;text-decoration:none; cursor: pointer;}
+.sidebar a:hover {background:#2c5364;}
+.main {margin-left:220px;padding:30px;}
+.card {background:white;color:black;padding:20px;border-radius:10px;margin-bottom:25px;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+input[type=file] {margin-top:10px;}
+button {margin-top:15px;padding:10px 20px;background:#1e90ff;border:none;color:white;border-radius:5px;cursor:pointer;}
+button:hover {background:#0b65d4;}
+#result {display:none;margin-top:20px;color:black;}
+#result.show {display:block;}
+.chart-container {position:relative;width:100%;height:300px;margin:20px 0;}
+.message.error {color:red;}
+.message.success {color:green;}
+@media(max-width:768px){.sidebar{width:100%;height:auto;position:relative;}.main{margin-left:0;padding:15px;}.card{padding:15px;}.chart-container{height:250px;}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <h2>AI Portal</h2>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="create_resume.html">Create Resume</a>
+  <a id="logout-btn">Logout</a>
+</div>
+<div class="main">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h1 style="margin: 0;">Student Dashboard</h1>
+    <div id="user-info" style="display: none; background: white; padding: 10px 20px; border-radius: 50px; font-weight: bold; color: #1e3c72; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      👤 <span id="display-username"></span>
+    </div>
+  </div>
+
+  <div id="messages"></div>
+
+  <div class="card">
+    <h2>Upload Resume</h2>
+    <form id="upload-form">
+      <label for="resume">Select Resume</label>
+      <input id="resume" type="file" name="resume" accept=".pdf,.docx,.txt" required>
+      <button type="submit" id="analyze-btn">Analyze Resume</button>
+    </form>
+
+    <div id="result">
+        <h3 id="prediction-text"></h3>
+        
+        <p id="expertise-box" style="display:none; font-size: 1.1em; padding: 10px; background: #e8f5e9; border-left: 5px solid #4caf50; border-radius: 5px; color: #2e7d32; margin: 10px 0;">
+          <strong>🌟 Primary Expertise Identified:</strong> <span id="expert-skills"></span>
+        </p>
+
+        <div id="chart-section" style="display:none;">
+          <h4>Skill Chart</h4>
+          <div class="chart-container">
+            <canvas id="skillsChart"></canvas>
+          </div>
+        </div>
+
+        <div id="courses-section" style="display:none;">
+          <h4>Recommended Courses</h4>
+          <ul id="courses-list"></ul>
+        </div>
+
+        <div id="jobs-section" style="display:none;">
+          <h4>Relevant Roles / Job Profiles (Skills Matched)</h4>
+          <ul id="jobs-list"></ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    const supabaseClient = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
+    
+    // Auth Check
+    async function checkAuth() {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("user-info").style.display = "block";
+            document.getElementById("display-username").innerText = session.user.user_metadata.username || session.user.email.split('@')[0];
+        }
+    }
+    checkAuth();
+
+    // Logout
+    document.getElementById("logout-btn").onclick = async () => {
+        await supabaseClient.auth.signOut();
+        localStorage.clear();
+        window.location.href = "login.html";
+    };
+
+    let skillsChartInstance = null;
+
+    // Handle Upload
+    document.getElementById("upload-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("analyze-btn");
+        const resumeFile = document.getElementById("resume").files[0];
+        
+        if (!resumeFile) return;
+
+        btn.disabled = true;
+        btn.innerText = "Analyzing...";
+
+        const formData = new FormData();
+        formData.append("resume", resumeFile);
+
+        try {
+            const response = await fetch(`${CONFIG.API_BASE_URL}/api/upload_resume`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.error) {
+                alert(data.error);
+            } else {
+                renderResults(data);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Connection to backend failed. Make sure your Render API is running.");
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Analyze Resume";
+        }
+    };
+
+    function renderResults(data) {
+        const resultDiv = document.getElementById("result");
+        resultDiv.classList.add("show");
+
+        document.getElementById("prediction-text").innerText = `✅ Recommended Career: ${data.prediction}`;
+        
+        // Expert Skills
+        if (data.expert_in && data.expert_in.length > 0) {
+            document.getElementById("expertise-box").style.display = "block";
+            document.getElementById("expert-skills").innerText = data.expert_in.join(", ");
+        } else {
+            document.getElementById("expertise-box").style.display = "none";
+        }
+
+        // Chart
+        if (data.charts && Object.keys(data.charts).length > 0) {
+            document.getElementById("chart-section").style.display = "block";
+            const labels = Object.keys(data.charts);
+            const values = Object.values(data.charts);
+            
+            if (skillsChartInstance) skillsChartInstance.destroy();
+            
+            const ctx = document.getElementById("skillsChart").getContext("2d");
+            skillsChartInstance = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets:[{
+                        label:"Skill Counts",
+                        data: values,
+                        backgroundColor: "rgba(30,144,255,0.7)",
+                        borderColor: "rgba(30,144,255,1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true }}
+                }
+            });
+        } else {
+            document.getElementById("chart-section").style.display = "none";
+        }
+
+        // Courses
+        const coursesList = document.getElementById("courses-list");
+        coursesList.innerHTML = "";
+        if (data.courses && data.courses.length > 0) {
+            document.getElementById("courses-section").style.display = "block";
+            data.courses.forEach(c => {
+                const li = document.createElement("li");
+                li.innerText = c;
+                coursesList.appendChild(li);
+            });
+        } else {
+            document.getElementById("courses-section").style.display = "none";
+        }
+
+        // Job Links
+        const jobsList = document.getElementById("jobs-list");
+        jobsList.innerHTML = "";
+        if (data.job_links) {
+            document.getElementById("jobs-section").style.display = "block";
+            for (const [platform, url] of Object.entries(data.job_links)) {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${url}" target="_blank">${platform}</a>`;
+                jobsList.appendChild(li);
+            }
+        } else {
+            document.getElementById("jobs-section").style.display = "none";
+        }
+
+        // Scroll to results
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>

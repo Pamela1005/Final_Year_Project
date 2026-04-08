@@ -1,0 +1,11 @@
+{
+  "public": "frontend",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/create_resume", "destination": "/create_resume.html" },
+    { "source": "/admin_dashboard", "destination": "/admin_dashboard.html" },
+    { "source": "/resume_template", "destination": "/resume_template.html" }
+  ]
+}

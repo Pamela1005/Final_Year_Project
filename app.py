@@ -2,7 +2,8 @@ import os, json
 from datetime import datetime
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import PyPDF2, docx, spacy, numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -12,6 +13,7 @@ from sklearn.model_selection import train_test_split
 load_dotenv()
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
+CORS(app) # Enable CORS for all routes
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "replace-this-with-a-strong-key")
 app.config["UPLOAD_FOLDER"] = "uploads"
 
@@ -488,6 +490,97 @@ def upload_resume():
         courses=courses,
         job_links=job_links
     )
+
+# --- API Endpoints for Decoupled Frontend ---
+
+@app.route("/api/predict_career", methods=["POST"])
+def api_predict_career():
+    data = request.json
+    text = data.get("text", "")
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
+    
+    skills = nlp_tokenize_and_extract_skills(text)
+    career = ml_predict_career(text)
+    courses = suggest_courses(career)
+    job_links = job_recommendations(career, skills)
+    
+    sorted_skills = sorted(skills.items(), key=lambda x: x[1], reverse=True)
+    expert_skills = [skill.title() for skill, count in sorted_skills[:3]]
+    
+    return jsonify({
+        "prediction": career,
+        "expert_in": expert_skills,
+        "charts": skills,
+        "courses": courses,
+        "job_links": job_links
+    })
+
+@app.route("/api/upload_resume", methods=["POST"])
+def api_upload_resume():
+    if "resume" not in request.files:
+        return jsonify({"error": "No file selected"}), 400
+    file = request.files["resume"]
+    if file.filename == "" or not allowed_file(file.filename):
+        return jsonify({"error": "Invalid file type"}), 400
+    
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    file.save(filepath)
+    
+    text = extract_text(filepath)
+    skills = nlp_tokenize_and_extract_skills(text)
+    
+    if not skills:
+        return jsonify({
+            "prediction": "General Explorer",
+            "expert_in": ["Discovery & Foundations"],
+            "courses": ["Explore online courses on LinkedIn Learning", "General Career Foundations"],
+            "job_links": {"LinkedIn Jobs (General)": "https://www.linkedin.com/jobs"}
+        })
+    
+    career = ml_predict_career(text)
+    courses = suggest_courses(career)
+    job_links = job_recommendations(career, skills)
+    
+    sorted_skills = sorted(skills.items(), key=lambda x: x[1], reverse=True)
+    expert_skills = [skill.title() for skill, count in sorted_skills[:3]]
+    
+    return jsonify({
+        "prediction": career,
+        "expert_in": expert_skills,
+        "charts": skills,
+        "courses": courses,
+        "job_links": job_links
+    })
+
+@app.route("/api/logs", methods=["GET"])
+def api_get_logs():
+    admin_email = os.getenv("ADMIN_EMAIL", "admin@admin.com")
+    # In a decoupled app, we might check a token instead of a session,
+    # but for now we'll allow fetching logs if the requester claims to be admin
+    # (In production, this should be secured with a JWT)
+    
+    log_file = "tracker.json"
+    logs = []
+    if os.path.exists(log_file):
+        try:
+            with open(log_file, "r") as f:
+                logs = json.load(f)
+        except:
+            pass
+    logs.reverse()
+    return jsonify(logs)
+
+@app.route("/api/log_activity", methods=["POST"])
+def api_log_activity():
+    data = request.json
+    user_email = data.get("email", "Anonymous")
+    action = data.get("action", "General Action")
+    details = data.get("details", "")
+    log_activity(user_email, action, details)
+    return jsonify({"status": "success"})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

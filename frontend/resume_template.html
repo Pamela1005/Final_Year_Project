@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume</title>
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+  .resume-container {
+    width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #2a5298;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #1e3c72;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #555;
+  }
+  .header p a {
+    color: #2a5298;
+    text-decoration: none;
+  }
+  
+  .section {
+    margin-bottom: 25px;
+  }
+  .section h2 {
+    font-size: 18px;
+    color: #1e3c72;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .item {
+    margin-bottom: 15px;
+  }
+  .item-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .item-subtitle {
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .item-desc {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .skills-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+
+  .print-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .print-btn:hover {
+    background: #2a5298;
+  }
+
+  @media print {
+    body {background: white;}
+    .resume-container {box-shadow: none; margin: 0; padding: 0; width: 100%;}
+    .print-btn {display: none;}
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
+
+<div class="resume-container">
+  <div class="header">
+    <h1 id="res-full-name"></h1>
+    <p>
+      <span id="res-email"></span> | <span id="res-phone"></span> 
+      <span id="res-links-span"></span>
+    </p>
+  </div>
+
+  <div id="summary-section" class="section" style="display:none;">
+    <h2>Professional Summary</h2>
+    <div id="res-summary" class="item-desc"></div>
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    <div class="item">
+      <div id="res-edu-degree" class="item-title"></div>
+      <div class="item-subtitle">
+        <span id="res-edu-institute"></span>
+        <span id="res-edu-year"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="skills-section" class="section" style="display:none;">
+    <h2>Skills</h2>
+    <div id="res-skills" class="item-desc"></div>
+  </div>
+
+  <!-- High School Related -->
+  <div id="hs-activities-section" class="section" style="display:none;">
+    <h2>Extracurriculars & Achievements</h2>
+    <div id="res-hs-activities" class="item-desc"></div>
+  </div>
+  <div id="hs-hobbies-section" class="section" style="display:none;">
+    <h2>Hobbies & Interests</h2>
+    <div id="res-hs-hobbies" class="item-desc"></div>
+  </div>
+
+  <!-- Degree Related -->
+  <div id="exp-section" class="section" style="display:none;">
+    <h2>Experience</h2>
+    <div class="item">
+      <div id="res-exp-title" class="item-title"></div>
+      <div class="item-subtitle">
+        <span id="res-exp-company"></span>
+        <span id="res-exp-duration"></span>
+      </div>
+      <div id="res-exp-desc" class="item-desc"></div>
+    </div>
+  </div>
+  <div id="projects-section" class="section" style="display:none;">
+    <h2>Projects</h2>
+    <div id="res-projects" class="item-desc"></div>
+  </div>
+</div>
+
+<div id="ai-analysis-container" class="resume-container" style="display:none; margin-top: 20px; background: #e8f4f8; border-top: 4px solid #1e3c72; padding: 30px;">
+  <h2 style="color: #1e3c72; text-align: center; font-size: 24px; margin-bottom: 20px; text-transform: uppercase;">AI Career Analysis</h2>
+  <h3 style="color: #333;">✅ Recommended Career Track: <span id="res-prediction" style="color: #1e90ff;"></span></h3>
+  
+  <p id="res-expert-box" style="display:none; font-size: 1.1em; padding: 10px; background: #e8f5e9; border-left: 5px solid #4caf50; border-radius: 5px; color: #2e7d32; margin: 15px 0;">
+    <strong>🌟 Primary Expertise Identified:</strong> <span id="res-expert-skills"></span>
+  </p>
+  
+  <div id="res-courses-section" style="display:none;">
+    <h4 style="color: #1e3c72; margin-top: 20px;">Recommended Courses & Learning</h4>
+    <ul id="res-courses-list" style="color: #555;"></ul>
+  </div>
+  
+  <div id="res-jobs-section" style="display:none;">
+    <h4 style="color: #1e3c72; margin-top: 20px;">Relevant Roles & Job Portals</h4>
+    <ul id="res-jobs-list" style="color: #555;"></ul>
+  </div>
+</div>
+
+<script>
+    const data = JSON.parse(localStorage.getItem("last_resume_data") || "{}");
+    const analysis = JSON.parse(localStorage.getItem("last_resume_analysis") || "{}");
+
+    if (!data.full_name) {
+        alert("No resume data found. Redirecting to home...");
+        window.location.href = "index.html";
+    }
+
+    // Populate Data
+    document.getElementById("res-full-name").innerText = data.full_name;
+    document.getElementById("res-email").innerText = data.email;
+    document.getElementById("res-phone").innerText = data.phone;
+    if (data.links) {
+        document.getElementById("res-links-span").innerHTML = `| <a href="https://${data.links}" target="_blank">${data.links}</a>`;
+    }
+
+    if (data.summary) {
+        document.getElementById("summary-section").style.display = "block";
+        document.getElementById("res-summary").innerText = data.summary;
+    }
+
+    document.getElementById("res-edu-degree").innerText = data.edu_degree;
+    document.getElementById("res-edu-institute").innerText = data.edu_institute;
+    document.getElementById("res-edu-year").innerText = data.edu_year;
+
+    if (data.skills) {
+        document.getElementById("skills-section").style.display = "block";
+        document.getElementById("res-skills").innerText = data.skills;
+    }
+
+    const level = data.education_level;
+    if (level === "highschool") {
+        if (data.hs_activities) {
+            document.getElementById("hs-activities-section").style.display = "block";
+            document.getElementById("res-hs-activities").innerText = data.hs_activities;
+        }
+        if (data.hs_hobbies) {
+            document.getElementById("hs-hobbies-section").style.display = "block";
+            document.getElementById("res-hs-hobbies").innerText = data.hs_hobbies;
+        }
+    } else {
+        if (data.exp_title || data.exp_company) {
+            document.getElementById("exp-section").style.display = "block";
+            document.getElementById("res-exp-title").innerText = data.exp_title || "";
+            document.getElementById("res-exp-company").innerText = data.exp_company || "";
+            document.getElementById("res-exp-duration").innerText = data.exp_duration || "";
+            document.getElementById("res-exp-desc").innerText = data.exp_desc || "";
+        }
+        if (data.projects) {
+            document.getElementById("projects-section").style.display = "block";
+            document.getElementById("res-projects").innerText = data.projects;
+        }
+    }
+
+    // Populate Analysis
+    if (analysis && analysis.prediction) {
+        document.getElementById("ai-analysis-container").style.display = "block";
+        document.getElementById("res-prediction").innerText = analysis.prediction;
+        
+        if (analysis.expert_in && analysis.expert_in.length > 0) {
+            document.getElementById("res-expert-box").style.display = "block";
+            document.getElementById("res-expert-skills").innerText = analysis.expert_in.join(", ");
+        }
+
+        if (analysis.courses && analysis.courses.length > 0) {
+            document.getElementById("res-courses-section").style.display = "block";
+            const list = document.getElementById("res-courses-list");
+            analysis.courses.forEach(c => {
+                const li = document.createElement("li");
+                li.innerText = c;
+                list.appendChild(li);
+            });
+        }
+
+        if (analysis.job_links) {
+            document.getElementById("res-jobs-section").style.display = "block";
+            const list = document.getElementById("res-jobs-list");
+            for (const [platform, url] of Object.entries(analysis.job_links)) {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${url}" target="_blank" style="color: #1e90ff; font-weight: bold; text-decoration: none;">${platform}</a>`;
+                list.appendChild(li);
+            }
+        }
+    }
+</script>
+</body>
+</html>
