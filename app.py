@@ -535,6 +535,7 @@ def api_upload_resume():
         return jsonify({
             "prediction": "General Explorer",
             "expert_in": ["Discovery & Foundations"],
+            "charts": {},
             "courses": ["Explore online courses on LinkedIn Learning", "General Career Foundations"],
             "job_links": {"LinkedIn Jobs (General)": "https://www.linkedin.com/jobs"}
         })

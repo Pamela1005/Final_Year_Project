@@ -141,10 +141,10 @@ button:hover {background:#0b65d4;}
         const resultDiv = document.getElementById("result");
         resultDiv.classList.add("show");
 
-        document.getElementById("prediction-text").innerText = `✅ Recommended Career: ${data.prediction}`;
+        document.getElementById("prediction-text").innerText = `✅ Recommended Career: ${data.prediction || 'General Explorer'}`;
         
         // Expert Skills
-        if (data.expert_in && data.expert_in.length > 0) {
+        if (data.expert_in && Array.isArray(data.expert_in) && data.expert_in.length > 0) {
             document.getElementById("expertise-box").style.display = "block";
             document.getElementById("expert-skills").innerText = data.expert_in.join(", ");
         } else {
@@ -152,7 +152,7 @@ button:hover {background:#0b65d4;}
         }
 
         // Chart
-        if (data.charts && Object.keys(data.charts).length > 0) {
+        if (data.charts && typeof data.charts === 'object' && Object.keys(data.charts).length > 0) {
             document.getElementById("chart-section").style.display = "block";
             const labels = Object.keys(data.charts);
             const values = Object.values(data.charts);
