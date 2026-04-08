@@ -130,7 +130,7 @@ button:hover {background:#0b65d4;}
             }
         } catch (err) {
             console.error(err);
-            alert("Connection to backend failed. Make sure your Render API is running.");
+            alert("Analysis took longer than expected or the backend is starting up. Please wait 30 seconds and try again!");
         } finally {
             btn.disabled = false;
             btn.innerText = "Analyze Resume";

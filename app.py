@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 load_dotenv()
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
-CORS(app) # Enable CORS for all routes
+CORS(app, resources={r"/api/*": {"origins": "*"}}) # Explicitly enable CORS for API routes
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "replace-this-with-a-strong-key")
 app.config["UPLOAD_FOLDER"] = "uploads"
 
@@ -248,24 +248,29 @@ def nlp_tokenize_and_extract_skills(text):
     # Return top skills (sorted by frequency)
     return dict(sorted(skills.items(), key=lambda x: x[1], reverse=True)[:10])
 
+# --- Global Machine Learning Model Prep ---
+# We train the model ONCE at startup to ensure near-instant responses during usage.
+
+print("Training Machine Learning Model for Career Prediction...")
+texts, labels = [], []
+for skill, career in SKILL_CAREER_MAP.items():
+    texts.append(f"I have experience in {skill}.")
+    labels.append(career)
+    texts.append(f"My skills include {skill}.")
+    labels.append(career)
+
+vectorizer = TfidfVectorizer(max_features=1000, stop_words="english")
+X = vectorizer.fit_transform(texts)
+y = np.array(labels)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+global_model = RandomForestClassifier(n_estimators=100, random_state=42)
+global_model.fit(X_train, y_train)
+print("Model Training Complete.")
+
 def ml_predict_career(text):
-    """Predict career based on ML model"""
-    texts, labels = [], []
-    for skill, career in SKILL_CAREER_MAP.items():
-        texts.append(f"I have experience in {skill}.")
-        labels.append(career)
-        texts.append(f"My skills include {skill}.")
-        labels.append(career)
-    
-    vectorizer = TfidfVectorizer(max_features=1000, stop_words="english")
-    X = vectorizer.fit_transform(texts)
-    y = np.array(labels)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    
-    prediction = model.predict(vectorizer.transform([text]))[0]
+    """Predict career based on pre-trained global ML model"""
+    prediction = global_model.predict(vectorizer.transform([text]))[0]
     return prediction
 
 def suggest_courses(career):
