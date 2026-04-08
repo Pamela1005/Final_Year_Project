@@ -381,7 +381,7 @@
     </div>
 
     <script>
-        const supabase = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
+        const supabaseClient = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
 
         const container = document.querySelector(".container");
         const alertBox = document.getElementById("alert-box");
@@ -402,7 +402,7 @@
             const email = document.getElementById("signin-email").value;
             const password = document.getElementById("signin-password").value;
 
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
             if (error) {
                 showAlert(error.message);
@@ -429,7 +429,7 @@
             const email = document.getElementById("signup-email").value;
             const password = document.getElementById("signup-password").value;
 
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await supabaseClient.auth.signUp({
                 email,
                 password,
                 options: { data: { username } }
