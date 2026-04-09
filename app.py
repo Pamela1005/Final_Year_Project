@@ -13,7 +13,11 @@ from sklearn.model_selection import train_test_split
 load_dotenv()
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
-CORS(app) # Enable CORS for all routes (important for pre-flight and multi-method support)
+CORS(app, origins=[
+    "https://final-year-project-black-five.vercel.app",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000"
+])
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "replace-this-with-a-strong-key")
 app.config["UPLOAD_FOLDER"] = "uploads"
 
