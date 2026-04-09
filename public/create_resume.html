@@ -205,42 +205,43 @@
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    
-    // Combine for analysis
     const combinedText = Object.values(data).join(" ");
 
+    // ✅ Always save form data FIRST so resume_template.html can render
+    localStorage.setItem("last_resume_data", JSON.stringify(data));
+    localStorage.setItem("last_resume_analysis", JSON.stringify({})); // blank until API responds
+
+    // Try to get AI analysis — if backend is sleeping, resume still shows without it
     try {
         const response = await fetch(`${CONFIG.API_BASE_URL}/api/predict_career`, {
             method: "POST",
-            headers: { "Content-Type" : "application/json" },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text: combinedText })
         });
         const analysis = await response.json();
-
-        // Save to localStorage
-        localStorage.setItem("last_resume_data", JSON.stringify(data));
+        // Update with AI results if successful
         localStorage.setItem("last_resume_analysis", JSON.stringify(analysis));
 
-        // Log to backend
+        // Log activity (non-blocking)
         fetch(`${CONFIG.API_BASE_URL}/api/log_activity`, {
             method: "POST",
-            headers: { "Content-Type" : "application/json" },
-            body: JSON.stringify({ 
-                email: localStorage.getItem("user_email"), 
-                action: "Generated Quick Resume", 
-                details: `Level: ${data.education_level}` 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: localStorage.getItem("user_email"),
+                action: "Generated Quick Resume",
+                details: `Level: ${data.education_level}`
             })
-        });
-
-        // Redirect
-        window.location.href = "resume_template.html";
+        }).catch(() => {});
     } catch (err) {
-        console.error(err);
-        alert("Failed to reach API. Please check your connection.");
+        // Backend unreachable — resume will still show without AI section
+        console.warn("AI analysis unavailable:", err.message);
     } finally {
         btn.disabled = false;
         btn.innerText = "Generate My Resume";
     }
+
+    // ✅ Always redirect to resume page regardless of API result
+    window.location.href = "resume_template.html";
   };
 </script>
 </body>

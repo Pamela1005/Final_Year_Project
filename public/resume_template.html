@@ -191,8 +191,15 @@
     const analysis = JSON.parse(localStorage.getItem("last_resume_analysis") || "{}");
 
     if (!data.full_name) {
-        alert("No resume data found. Redirecting to home...");
-        window.location.href = "index.html";
+        document.querySelector(".resume-container").innerHTML = `
+            <div style="text-align:center; padding: 60px 20px;">
+                <h2 style="color:#1e3c72;">No Resume Data Found</h2>
+                <p style="color:#555; margin: 15px 0;">Please fill out the resume builder form first.</p>
+                <a href="create_resume.html" style="display:inline-block; padding:12px 30px; background:#1e3c72; color:white; border-radius:5px; text-decoration:none; font-weight:bold;">← Go to Resume Builder</a>
+            </div>`;
+        document.getElementById("ai-analysis-container").style.display = "none";
+        document.querySelector(".print-btn").style.display = "none";
+        return; // stop further execution
     }
 
     // Populate Data
